@@ -11,7 +11,7 @@ Authors: [Andrew Gyakobo](https://github.com/Gyakobo), Felix Schmidt
 A special thanks to [Andrej Karpathy](https://github.com/karpathy), whose [nanoGPT](https://github.com/karpathy/nanoGPT) and *Neural Networks: Zero to Hero* series this project is built on, and to the authors of [DiLoCo](https://arxiv.org/abs/2311.08105) and [Scaling Laws for DiLoCo](https://arxiv.org/abs/2503.09799), whose findings we set out to test.
 
 >[!NOTE]
->This folder accompanies our paper **"[Re] Communication-Efficient Language Model Training Scales Reliably and Robustly: Scaling Laws for DiLoCo"**, submitted to [ReScience C](https://rescience.github.io/) ([PDF](../rescience/rescience_diloco.pdf)). Every figure and table in the paper can be regenerated from the logs in [`results/`](./results) in seconds, without a GPU.
+>This repository accompanies our paper **"[Re] Communication-Efficient Language Model Training Scales Reliably and Robustly: Scaling Laws for DiLoCo"**, submitted to [ReScience C](https://rescience.github.io/) ([PDF](./rescience/rescience_diloco.pdf)). Every figure and table in the paper can be regenerated from the logs in [`results/`](./results) in seconds, without a GPU.
 
 This project is an independent, from-scratch implementation of **DiLoCo** (Distributed Low-Communication training) on top of a nanoGPT-style model. It tests whether the hyperparameter findings of Charles et al. (2025), established with models up to 10B parameters, still hold on hardware anyone can own: a single **RTX 3070 Ti (8 GB)**, with up to 8 workers simulated on one GPU.
 
@@ -124,14 +124,14 @@ configs/               # one YAML file per experiment
 data/prepare.py        # downloads and tokenizes TinyStories
 tests/                 # 10 correctness tests
 results/               # logs of all 126 runs (JSON + CSV)
-../rescience/          # the paper (PDF) and its metadata, at the repository root
+rescience/             # the paper (PDF) and its metadata
 ```
 
 ## Getting started
 
 ```bash
-git clone https://github.com/Gyakobo/building-gpt.git
-cd building-gpt/diloco
+git clone https://github.com/Gyakobo/diloco-replication.git
+cd diloco-replication
 pip install -r requirements.txt
 python data/prepare.py          # download + tokenize TinyStories (once)
 python -m pytest tests/ -q      # 10 correctness tests
@@ -209,4 +209,4 @@ In a longer, 20-tokens-per-parameter run, `H ≤ 100` keeps its benefit to the e
 
 ## License
 
-[MIT](../LICENSE)
+[MIT](./LICENSE)

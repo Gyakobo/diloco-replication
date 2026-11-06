@@ -1,0 +1,7 @@
+__pycache__/
+.DS_Store
+*Zone.Identifier
+venv/
+.venv/
+data/*.bin
+results_review/
