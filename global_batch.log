@@ -1,0 +1,56 @@
+13 runs, about 5.3 GPU-hours if none are already done
+
+    1. ~   3 min  {'steps': 4000, 'seed': 0, 'mode': 'baseline', 'batch_size': 16}
+    2. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 25, 'outer_lr': 0.7, 'name': 'diloco_k2_H25_olr0.7_m0.9_nest_gb128_steps4000_s0'}
+    3. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 0.7, 'name': 'diloco_k2_H100_olr0.7_m0.9_nest_gb128_steps4000_s0'}
+    4. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 500, 'outer_lr': 0.7, 'name': 'diloco_k2_H500_olr0.7_m0.9_nest_gb128_steps4000_s0'}
+    5. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 0.5, 'name': 'diloco_k2_H100_olr0.5_m0.9_nest_gb128_steps4000_s0'}
+    6. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 1.0, 'name': 'diloco_k2_H100_olr1.0_m0.9_nest_gb128_steps4000_s0'}
+    7. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 1.3, 'name': 'diloco_k2_H100_olr1.3_m0.9_nest_gb128_steps4000_s0'}
+    8. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 25, 'outer_lr': 0.7, 'name': 'diloco_k8_H25_olr0.7_m0.9_nest_gb128_steps4000_s0'}
+    9. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 0.7, 'name': 'diloco_k8_H100_olr0.7_m0.9_nest_gb128_steps4000_s0'}
+   10. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 500, 'outer_lr': 0.7, 'name': 'diloco_k8_H500_olr0.7_m0.9_nest_gb128_steps4000_s0'}
+   11. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 0.5, 'name': 'diloco_k8_H100_olr0.5_m0.9_nest_gb128_steps4000_s0'}
+   12. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 1.0, 'name': 'diloco_k8_H100_olr1.0_m0.9_nest_gb128_steps4000_s0'}
+   13. ~  26 min  {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 1.3, 'name': 'diloco_k8_H100_olr1.3_m0.9_nest_gb128_steps4000_s0'}
+
+===== [1/13] {'steps': 4000, 'seed': 0, 'mode': 'baseline', 'batch_size': 16}  (sweep time so far 0.0 h)
+[skip] baseline_bs16_steps4000_s0 already done
+
+===== [2/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 25, 'outer_lr': 0.7, 'name': 'diloco_k2_H25_olr0.7_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k2_H25_olr0.7_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [3/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 0.7, 'name': 'diloco_k2_H100_olr0.7_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k2_H100_olr0.7_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [4/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 500, 'outer_lr': 0.7, 'name': 'diloco_k2_H500_olr0.7_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k2_H500_olr0.7_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [5/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 0.5, 'name': 'diloco_k2_H100_olr0.5_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k2_H100_olr0.5_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [6/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 1.0, 'name': 'diloco_k2_H100_olr1.0_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k2_H100_olr1.0_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [7/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 2, 'batch_size': 64, 'H': 100, 'outer_lr': 1.3, 'name': 'diloco_k2_H100_olr1.3_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k2_H100_olr1.3_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [8/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 25, 'outer_lr': 0.7, 'name': 'diloco_k8_H25_olr0.7_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k8_H25_olr0.7_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [9/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 0.7, 'name': 'diloco_k8_H100_olr0.7_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k8_H100_olr0.7_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [10/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 500, 'outer_lr': 0.7, 'name': 'diloco_k8_H500_olr0.7_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k8_H500_olr0.7_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [11/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 0.5, 'name': 'diloco_k8_H100_olr0.5_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k8_H100_olr0.5_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [12/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 1.0, 'name': 'diloco_k8_H100_olr1.0_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k8_H100_olr1.0_m0.9_nest_gb128_steps4000_s0 already done
+
+===== [13/13] {'steps': 4000, 'seed': 0, 'mode': 'diloco', 'k': 8, 'batch_size': 16, 'H': 100, 'outer_lr': 1.3, 'name': 'diloco_k8_H100_olr1.3_m0.9_nest_gb128_steps4000_s0'}  (sweep time so far 0.0 h)
+[skip] diloco_k8_H100_olr1.3_m0.9_nest_gb128_steps4000_s0 already done
+
+sweep finished in 0.0 h, 0 failed
