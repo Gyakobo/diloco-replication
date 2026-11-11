@@ -25,17 +25,17 @@ Just a few notes about the setup:
 * A 30M-parameter GPT (6 layers, 6 heads, width 384, context 256), trained from scratch
 * [TinyStories](https://arxiv.org/abs/2305.07759) tokenized with the GPT-2 tokenizer (474M training tokens)
 * Up to 8 workers, simulated one after another on a single GPU
-* 126 runs in total, about 71 GPU-hours
+* 139 runs in total, about 76 GPU-hours
 
 ## Key findings
 
 | Claim from Charles et al. (2025) | Our result |
 |---|---|
 | Loss increases with the sync interval `H` | ✅ Reproduced |
-| The best outer learning rate increases with `H` | 🔄 Reproduced at a fixed budget, but it follows the **number of outer rounds**, not `H` |
-| The best outer learning rate increases with the number of workers | ✅ Reproduced |
-| At small scale, DiLoCo falls further behind data-parallel training as workers are added | ✅ Reproduced (2.5%, 5.4%, 8.1% behind for 2, 4, 8 workers at `H = 25`) |
-| A single DiLoCo worker beats plain AdamW | ⚠️ Partly: only at `H = 25`, not at `H ≥ 100` |
+| The best outer learning rate increases with `H` | ✅ Reproduced at a fixed budget; in our runs it follows the **number of outer rounds** |
+| The best outer learning rate increases with the number of workers | ✅ Reproduced (also with a fixed global batch) |
+| At small scale, DiLoCo falls further behind data-parallel training as workers are added | ✅ Reproduced (2.5%, 5.4%, 8.1% behind for 2, 4, 8 workers at `H = 25`; 0.8%, 5.4%, 12.2% with a fixed global batch) |
+| A single DiLoCo worker beats plain AdamW | ✅ Reproduced at `H = 25` (the original claim is at `H = 30`); not at `H ≥ 100`, consistent with the original |
 
 The most interesting result: an outer learning rate of **1.0 beats 0.7 only when training has 16 or fewer outer rounds**, whatever `H` is. With 24 or more rounds, 0.7 wins every time.
 
@@ -123,7 +123,7 @@ check_equivalence.py   # quick k=1 DiLoCo vs AdamW check
 configs/               # one YAML file per experiment
 data/prepare.py        # downloads and tokenizes TinyStories
 tests/                 # 10 correctness tests
-results/               # logs of all 126 runs (JSON + CSV)
+results/               # logs of all 139 runs (JSON + CSV)
 rescience/             # the paper (PDF) and its metadata
 ```
 
@@ -166,7 +166,7 @@ python compare_review.py
 >[!NOTE]
 >bfloat16 GPU kernels are not bit-for-bit deterministic across machines, so your final losses may differ in the third decimal. Differences above 0.015 are flagged.
 
-**3) The full study (about 65–70 GPU-hours).**
+**3) The full study (about 70–76 GPU-hours).**
 
 ```bash
 CONFIGS=$(ls configs/*.yaml | grep -v "review_quick\|rerun_sync")

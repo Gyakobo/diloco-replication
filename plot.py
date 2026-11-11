@@ -102,6 +102,7 @@ def select(runs, **want):
 
 
 def diloco(runs, **kw):
+    kw.setdefault("batch_size", 32)   # per-worker batch; the fixed-global-batch check uses 64 (k=2) and 16 (k=8)
     return select(runs, mode="diloco", **kw)
 
 
@@ -306,6 +307,38 @@ def plot_lr_rounds(runs):
     ax.legend(fontsize=7, loc="upper left", bbox_to_anchor=(1.02, 1.0))
     save(fig, "lr_rounds")
     NUM["lr_pref"] = {f"H{H}_T{T}": {"diff": round(d, 4), "n": n} for H, T, d, n in pts}
+
+
+def write_global_batch_table(runs):
+    """C3/C4 under a fixed GLOBAL batch of 128 sequences split across k workers (as in Charles et al.):
+    k=2 -> 64 per worker, k=4 -> 32, k=8 -> 16. All k share the bs128 sync baseline; the solo baseline
+    is one worker with the per-worker batch."""
+    per = {2: 64, 4: 32, 8: 16}
+    sync = mean(baseline(runs, 128))
+    solo = {k: mean(baseline(runs, b)) for k, b in per.items()}
+    rows, NUM["global_batch"] = [], {"sync": round(sync, 4), "solo": {k: round(v, 4) for k, v in solo.items()}}
+    for H in (25, 100, 500):
+        cells = [f"$H = {H}$"]
+        for k in (2, 4, 8):
+            L = mean(diloco(runs, k=k, H=H, outer_lr=0.7, steps=GRID_STEPS, batch_size=per[k]))
+            cells.append(f"{L:.3f} ({100 * (L / sync - 1):+.1f}\\%)")
+            NUM["global_batch"][f"k{k}_H{H}"] = {"loss": round(L, 4), "above_sync": round(100 * (L / sync - 1), 2),
+                                                  "gap": round(100 * (solo[k] - L) / (solo[k] - sync), 1)}
+        rows.append(cells)
+    rows.append("MIDRULE")
+    for lr in (0.5, 0.7, 1.0, 1.3):
+        cells = [f"$H = 100$, lr {lr}"]
+        for k in (2, 4, 8):
+            v = diloco(runs, k=k, H=100, outer_lr=lr, steps=GRID_STEPS, batch_size=per[k])
+            cells.append(f"{mean(v):.3f}" if v else "--")
+        rows.append(cells)
+    best = {}
+    for k in (2, 4, 8):
+        vals = {lr: mean(diloco(runs, k=k, H=100, outer_lr=lr, steps=GRID_STEPS, batch_size=per[k])) for lr in (0.5, 0.7, 1.0, 1.3)}
+        best[k] = min(vals, key=vals.get)
+        NUM["global_batch"][f"lr_k{k}"] = {str(l): round(v, 4) for l, v in vals.items()}
+    rows.append(["best outer lr"] + [f"{best[k]:.1f}" for k in (2, 4, 8)])
+    write_table("global_batch_table", " & $k = 2$ (64 each) & $k = 4$ (32 each) & $k = 8$ (16 each)", rows, "lccc")
 
 
 def write_k1_table(runs):
@@ -582,6 +615,7 @@ def main():
     write_noniid_table(runs)
     write_scale_table(runs)
     write_k1_table(runs)
+    write_global_batch_table(runs)
     with open(os.path.join(FIGS, "numbers.json"), "w") as f:
         json.dump(NUM, f, indent=1, default=str)
     print("  wrote figures/numbers.json")
